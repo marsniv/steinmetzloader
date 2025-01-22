@@ -24,4 +24,7 @@ After all these changes are done, go to terminal and make sure you are in the ri
 
 Done! 
 
+If you are interested in further adjusting the code to suit your needs, consult this:
+https://github.com/nsteinme/steinmetz-et-al-2019/wiki/data-files
+
 
