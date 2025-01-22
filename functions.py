@@ -24,15 +24,7 @@ def pmatize(spiketimes, bin_size, events):
         spike_train, _ = np.histogram(events[i], bins=np.arange(time_window[0], time_window[1] + bin_size, bin_size))
         spike_train = np.where(spike_train > 0, 1, spike_train)
         pmat.append(spike_train)
-    return pmat 
-
-def annotatize(array, annotation, indices):
-    good = []
-    for i in range(len(annotation)):
-        if annotation[i] >= 2 and i in indices:
-            good.append(True)
-        else: 
-            good.append(False)        
+    return pmat    
 
     good = np.array(good, dtype=object)
     array = [array[j] for j in range(len(array)) if good[j]]
