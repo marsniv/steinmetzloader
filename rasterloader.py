@@ -1,10 +1,6 @@
 import os
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib.gridspec as gridspec
-import pandas as pd
-import h5py
 from functions import *
 
 #select where the data is (should be the NAS)
@@ -39,21 +35,23 @@ spiketimes = []
 spikes = []
 annotations = []
 for save in saves:
+    #the cluster ids and their spike times
     spiketimefile = str(save)+"/spikes.times.npy"
     spiketimes.append(np.load(spiketimefile))
     spikesfile = str(save)+"/spikes.clusters.npy"
     spikes.append(np.load(spikesfile))
+    #the annotation for good quality neurons (see Steinmetz' github)
     annotationfile = str(save)+"/clusters._phy_annotation.npy"
     annotations.append(np.load(annotationfile))
 
 #save np arrays of those neuron spike timings 
 for i in range(len(spikes)):
-    #currently, i pmatize every neuron spiking instead of just the ones from the relevant 
-    #brain area. fix in future! 
+    #sort events and trim ones we are interested in 
     events = eventize(spikes[i], spiketimes[i], annotations[i], indices[i])
+    #turn into a numpy array with timebins as columns and neurons as rows
     pmat = pmatize(spiketimes[i], binsize, events)
-    #LAST STEP remove low quality neuron ids 
-    #pmat = annotatize(pmat, annotations[i], indices[i])
-    np.save(str(outputdir)+"/"+str(sessions[i])+"_"+str(brainarea)+".npy", pmat)
+    #collect number of neurons per session
+    numneu = len(events)
+    np.save(str(outputdir)+"/"+str(brainarea)+"_"+str(numneu)+"neurons_"+str(sessions[i])+".npy", pmat)
     print("session " +str(i+1)+"/"+str(len(spikes))+" extracted")
 print("doneso!")
