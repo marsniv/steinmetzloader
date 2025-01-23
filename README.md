@@ -16,13 +16,16 @@ The way this code is set up is through command line (sorry not sorry).
 Set `rootdir` to wherever the allData folder from Steinmetz was saved. This code will comb through that folder and extract relevant sessions.
 Set `outputdir` to where you want the numpy files of the spikes to be loaded. 
 Set `brainarea` to your desired brain area. 
-You can change binsize if you want, or leave it at 10ms.
+You can change `binsize` if you want, or leave it at 10ms.
 
 ## running
 After all these changes are done, go to terminal and make sure you are in the right location. Then simply run:
 `python rasterloader.py`
 
 Done! 
+
+## other notes
+In the github there is a file called table.csv that includes all the brain areas in the data, the number of sessions per brain area, and the number of neurons per brain area. 
 
 If you are interested in further adjusting the code to suit your needs, consult this:
 https://github.com/nsteinme/steinmetz-et-al-2019/wiki/data-files
