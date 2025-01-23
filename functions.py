@@ -18,7 +18,6 @@ def eventize(spikes, spiketimes, annotation, indices):
 
 def pmatize(spiketimes, bin_size, events):
     time_window = [0, int(np.max(spiketimes))]  # Time window in seconds
-    time_vector = np.arange(time_window[0], time_window[1], bin_size)
     pmat = []
     for i in range(len(events)):
         spike_train, _ = np.histogram(events[i], bins=np.arange(time_window[0], time_window[1] + bin_size, bin_size))
