@@ -2,7 +2,7 @@
 
 Hello! 
 I have written this code so people in my lab can load in data from Steinmetz et al., 2019 (https://doi.org/10.1038/s41586-019-1787-x). 
-It outputs numpy files with rows as neurons and columns as time bins with 0s and 1s for spikes and silence. It will create a new numpy file for every recording session.
+It outputs numpy files with rows as neurons and columns as time bins with 0s and 1s for spikes and silence. It will create a new numpy file for every recording session with greater than 128 recorded neurons.
 
 ## preparing the data
 If you are in the MaTRIX Laboratory, the data is already loaded on the CEDAR (thanks Keith!)
