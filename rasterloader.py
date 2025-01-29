@@ -58,7 +58,6 @@ print('data compiled')
 
 
 #save np arrays of those neuron spike timings 
-pmats = 0
 for i in range(len(spikes)):
     #sort out the events
     events = eventize(areas[i],channels[i],brainarea,annotations[i],spikes[i],spiketimes[i])
@@ -71,5 +70,5 @@ for i in range(len(spikes)):
     numneu = len(events)
     #save numpy file
     np.save(str(outputdir)+"/"+str(brainarea)+"_"+str(numneu)+"neurons.npy", pmat)
-    pmats = pmats + 1
-print(str(pmats)+" files created.")
+    print("file created")
+print("doneso!")
