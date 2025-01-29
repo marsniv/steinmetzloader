@@ -1,6 +1,8 @@
 import numpy as np
 
 #select correct events
+
+
 def eventize(areas,channels,brainarea, annotations, spikes, spiketimes):
     #select the indices of the 1122 channels with the correct brain area 
     brainareaindices= np.where(areas == str(brainarea))
@@ -10,19 +12,22 @@ def eventize(areas,channels,brainarea, annotations, spikes, spiketimes):
     neurons = clusters[0]
     listofevents = []
     for i in range(0, int(np.max(neurons))):
+        #only select neurons from that brain area 
         if i not in neurons:
             continue
+        #quality check
         if annotations[i] < 2:
             continue
         #select all spike times where that neuron id fired
         condition = (spikes[:]==i)
         #select the range of times when neuron is active
         listofevents.append(spiketimes[condition])
+    #turn into numpy array 
     events = np.array(listofevents, dtype=object)
     return events
 
+#turn list of clusters and spiketimes into an array of 0s and 1s
 def pmatize(events, bin_size):
-    #select length of recording sessions
     maxtime = np.max([np.max(arr) for arr in events])
     time_window = [0, int(np.max(maxtime))]  # Time window in seconds
     pmat = []
