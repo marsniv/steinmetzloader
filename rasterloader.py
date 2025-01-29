@@ -24,7 +24,7 @@ for path, subdirs, files in os.walk(rootdir):
             location = pd.read_csv(str(os.path.join(path, file)), sep='\t') 
             unique_values = location['allen_ontology'].unique()
             count = (location['allen_ontology'] == str(brainarea)).sum()
-            if brainarea in unique_values and int(count) >= 128:
+            if brainarea in unique_values:
                 #if requested brain area is in that list, then select indices of those neurons
                 area = location['allen_ontology'].to_numpy()
                 #tosave = np.array(location.index[location.allen_ontology == brainarea])
